@@ -50,7 +50,7 @@ async function evaluateBlock(
   return await evaluateBlock(singleContext.next, context, ymlContent);
 }
 
-const iterateAndEvaluateExpressions = (obj: any, context: any) => {
+const iterateAndEvaluateExpressions = (obj: any, context: Map<string, any>) => {
   Object.keys(obj).forEach((key: string) => {
     if (typeof obj[key] === "string") {
       if (obj[key].includes(CONTEXT_PLACEHOLDER)) {
