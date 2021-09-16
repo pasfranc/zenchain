@@ -34,9 +34,9 @@ async function evaluateBlock(
   console.log("Current block is " + block);
   const singleContext: any = {};
 
-  iterateAndEvaluateExpressions(ymlContent.blocks[block], context);
   storeContext(singleContext, block, ymlContent, context);
-
+  iterateAndEvaluateExpressions(context.get(block), context);
+  
   if (ymlContent.blocks[block].type === BLOCK_TYPE.ZENROOM) {
     const zenroomResult: any = await callZenroom(block, singleContext);
     singleContext.output = JSON.parse(zenroomResult.result);
