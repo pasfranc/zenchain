@@ -77,11 +77,10 @@ function storeContext(
   ymlContent: any,
   context: Map<string, any>
 ) {
-  singleContext.name = block;
-  singleContext.keys = ymlContent.blocks[block].keys;
-  singleContext.data = ymlContent.blocks[block].data;
-  singleContext.output = ymlContent.blocks[block].output;
-  singleContext.next = ymlContent.blocks[block].next;
+  Object.keys(ymlContent.blocks[block]).forEach((key: string) => {
+    singleContext[key] = ymlContent.blocks[block][key];
+  });
+
   updateContext(singleContext, context, block);
 }
 

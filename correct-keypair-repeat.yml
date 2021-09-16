@@ -1,0 +1,57 @@
+zenchain: 1.0
+name: keypair-test
+first: user-data
+blocks:
+  user-data:
+    type: input
+    data:
+      userData:
+        email: john@doe.com
+    next: create-pbkdf
+    counter: 0
+  create-pbkdf:
+    type: zenroom-contract
+    keys:
+      theBackend:
+        keypair:
+          private_key: Aku7vkJ7K01gQehKELav3qaQfTeTMZKgK+5VhaR3Ui0=
+          public_key: BBCQg21VcjsmfTmNsg+I+8m1Cm0neaYONTqRnXUjsJLPa8075IYH+a9w2wRO7rFM1cKmv19Igd7ntDZcUvLq3xI=
+      theBackendPassword: myVerySecretPassword
+      userData: context.get("user-data").data.userData
+    exec: context.get('user-data').counter++
+    next: "context.get('create-pbkdf').exec < 3 ? 'create-pbkdf' : 'first-user-answers'"
+  first-user-answers:
+    type: input
+    data:
+      question1: "Parigi"
+      question2: "ScoobyDoo"
+      question3: "Amsterdam"
+      question4: "Mrs Doubtfire"
+      question5: "Gervasoni"
+    next: create-keypair
+  create-keypair:
+    type: zenroom-contract
+    keys:
+      userChallenges: context.get("first-user-answers").data
+      username: context.get("user-data").data.userData.email
+      key_derivation: context.get("create-pbkdf").output.key_derivation
+    next: second-user-answers
+  second-user-answers:
+    type: input
+    data:
+      question1: "Parigi"
+      question2: "ScoobyDoo"
+      question3: "Amsterdam"
+      question4: "Mrs Doubtfire"
+      question5: "Gervasoni"
+    next: verify-keypair
+  verify-keypair:
+    type: zenroom-contract
+    keys:
+      userChallenges: context.get("second-user-answers").data
+      username: context.get("user-data").data.userData.email
+      key_derivation: context.get("create-pbkdf").output.key_derivation
+    next: result
+  result:
+    type: output
+    output: context.get("create-keypair").output[context.get("create-keypair").keys.username].keypair.public_key === context.get("verify-keypair").output[context.get("verify-keypair").keys.username].keypair.public_key
