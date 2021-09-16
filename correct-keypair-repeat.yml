@@ -8,7 +8,7 @@ blocks:
       userData:
         email: john@doe.com
     next: create-pbkdf
-    counter: 0
+  counter: 0
   create-pbkdf:
     type: zenroom-contract
     keys:
