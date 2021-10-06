@@ -1,5 +1,5 @@
 import { execute } from "../executor";
-/* test("executor : correct keypair", async () => {
+ test("executor : correct keypair", async () => {
   const ymlFileName = "correct-keypair";
 
   const result = await execute(ymlFileName);
@@ -15,7 +15,7 @@ test("executor : wrong keypair", async () => {
   const expected = { zenchain: 1.0 };
 
   expect(result).toEqual(false);
-}); */
+});
 
 test("executor : correct keypair and 3 times create-pbkdf", async () => {
   const ymlFileName = "correct-keypair-repeat";
