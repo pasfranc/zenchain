@@ -10,8 +10,7 @@ blocks:
     next: create-pbkdf
   create-pbkdf:
     type: zenroom-contract
-    next2: "context.get('user-data').data.userData.email == 'john@doe.com' ? 'first-user-answers' : 'create-pbkdf'"
-    next: first-user-answers
+    next: "context.get('user-data').data.userData.email == 'john@doe.com' ? 'first-user-answers' : 'create-pbkdf'"
   first-user-answers:
     type: input
     data:
