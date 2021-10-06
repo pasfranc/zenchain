@@ -8,10 +8,10 @@ blocks:
       userData:
         email: john@doe.com
     next: create-pbkdf
-  counter: 0
+    counter: 0
   create-pbkdf:
     type: zenroom-contract
-    exec: context.get('user-data').counter++
+    exec: context.get("user-data").counter++
     next: "context.get('create-pbkdf').exec < 3 ? 'create-pbkdf' : 'first-user-answers'"
   first-user-answers:
     type: input
