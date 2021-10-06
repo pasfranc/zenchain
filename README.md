@@ -1,6 +1,6 @@
 # Zenchain lib
 
-Component to execute multiple zenroom contracts in chain. The lib is taking in input a yml file that consists in blocks and a "first" property that indicates the first contract to execiute. Every block has a "next" property that indicates next block to execute and has a type. These are the recognized types for the library:
+Component to execute multiple zenroom contracts in chain. The lib is taking in input a yml file that consists in blocks and a "first" property that indicates the first contract to execute. Every block has a "next" property that indicates next block to execute and has a type. These are the recognized types for the library:
 - INPUT
 - ZENROOM
 - OUTPUT
