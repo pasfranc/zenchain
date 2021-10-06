@@ -1,5 +1,5 @@
 zenchain: 1.0
-name: keypair-test
+name: correct-keypair
 first: user-data
 blocks:
   user-data:
