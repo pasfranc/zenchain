@@ -1,9 +1,9 @@
 # Zenchain lib
 
 Component to execute multiple zenroom contracts in chain. The lib is taking in input a yml file that consists in blocks and a "first" property that indicates the first contract to execute. Every block has a "next" property that indicates next block to execute and has a type. These are the recognized types for the library:
-- INPUT
-- ZENROOM
-- OUTPUT
+- INPUT ("input")
+- ZENROOM ("zenroom-contract")
+- OUTPUT ("output")
 
 An INPUT block is used to provide an input for next contracts (it can be useful to init same variables that can change during the executions i.e. a counter). A ZENROOM block is used when there is a zenroom contract to execute. The library will try to find a zenroom contract (.zen) and a keys file (.keys) for the contract in the contracts folder with same name.
 An OUTPUT block is the final state for our chain. After the library executes an output block it will stop.
