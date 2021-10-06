@@ -14,7 +14,7 @@ context.get('name-of-contract').output
 ```
 to access the output (you can access even .keys or .data if you want to use same input)
 
-The library is able to evaluate expression and use it to decide a specific path of contracts (you can see it [here](https://github.com/pasfranc/zenchain/blob/master/correct-keypair.yml#L13)). This means we can even repeat execution of contracts until a specific condition is not met (A counter for instance - you can see it in correct-keypair-repeat line 11-13-14).
+The library is able to evaluate expression and use it to decide a specific path of contracts (you can see it [here](https://github.com/pasfranc/zenchain/blob/master/correct-keypair.yml#L13)). This means we can even repeat execution of contracts until a specific condition is not met (A counter for instance - you can see it [here](https://github.com/pasfranc/zenchain/blob/master/correct-keypair-repeat.yml#L11-L15)).
 
 
 ## Test
