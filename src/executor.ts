@@ -7,6 +7,7 @@ const CONTEXT_PLACEHOLDER = "context.get(";
 const UTF8 = "utf8";
 const YML_EXT = ".yml";
 const ZENROOM_EXT = ".zen";
+const KEYS_EXT = ".keys";
 
 enum BLOCK_TYPE {
   ZENROOM = "zenroom-contract",
@@ -32,11 +33,12 @@ async function evaluateBlock(
   ymlContent: any
 ): Promise<any> {
   console.log("Current block is " + block);
-  const singleContext: any = {};
+  const singleContext: any = { keys: {} };
 
+  addKeysToContext(singleContext, block);
   storeContext(singleContext, block, ymlContent, context);
   iterateAndEvaluateExpressions(context.get(block), context);
-  
+
   if (ymlContent.blocks[block].type === BLOCK_TYPE.ZENROOM) {
     const zenroomResult: any = await callZenroom(block, singleContext);
     singleContext.output = JSON.parse(zenroomResult.result);
@@ -69,6 +71,18 @@ function updateContext(
   block: string
 ) {
   context.set(block, singleContext);
+}
+
+function addKeysToContext(singleContext: any, block: string) {
+  const keysFilePath = "./src/contracts/" + block + KEYS_EXT;
+  const keysFileExists = fs.existsSync(keysFilePath);
+
+  if (keysFileExists) {
+    const keys = JSON.parse(fs.readFileSync(keysFilePath, UTF8));
+    Object.keys(keys).forEach((key: string) => {
+      singleContext.keys[key] = keys[key];
+    });
+  }
 }
 
 function storeContext(

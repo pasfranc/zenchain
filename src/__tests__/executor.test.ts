@@ -18,11 +18,11 @@ test("executor : wrong keypair", async () => {
 });
 
 test("executor : correct keypair and 3 times create-pbkdf", async () => {
-    const ymlFileName = "correct-keypair-repeat";
-  
-    const result = await execute(ymlFileName);
-  
-    const expected = { zenchain: 1.0 };
-  
-    expect(result).toEqual(true);
-  });
+  const ymlFileName = "correct-keypair-repeat";
+
+  const result = await execute(ymlFileName);
+
+  const expected = { zenchain: 1.0 };
+
+  expect(result).toEqual(true);
+});
