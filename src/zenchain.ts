@@ -15,7 +15,7 @@ enum BLOCK_TYPE {
   OUTPUT = "output",
 }
 
-export async function execute(ymlFile: string): Promise<any> {
+export async function executeChain(ymlFile: string): Promise<any> {
   dotenv.config();
 
   const fileContents = fs.readFileSync("./" + ymlFile + YML_EXT, UTF8);
