@@ -6,7 +6,7 @@ Component to execute multiple zenroom contracts in chain. The lib is taking in i
 - OUTPUT
 
 An INPUT block is used to provide an input for next contracts (it can be avoided at all, it's there just for readibility). A ZENROOM block is used when there is a zenroom contract to execute. The library will try to find a zenroom contract (.zen) and a keys file (.keys) for the contract in the contracts folder with same name.
-An OUTPUT block is the final state for our chain. When the library encounters an output block it will stop.
+An OUTPUT block is the final state for our chain. After the library executes an output block it will stop.
 
 The library is building for every block iteration a context file that contains all input and all output for every contract that is executed. This means that you can use the output(or part of it) of a contract as input for all the next contracts. To access a property from the context in the yml or .keys file you need to specify 
 ```bash
